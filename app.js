@@ -1,6 +1,7 @@
 let express = require('express');
 let app = express();
 let mongoose = require('mongoose');
+let bodyParser = require('body-parser');
 
 let Product = require('./api/models/productModel');
 
@@ -11,6 +12,11 @@ let db = mongoose.connect('mongodb://localhost:27017/node-api', (err) => {
 
   console.log('mongoose connected');
 });
+
+//MiddleWare; allowing Express to read the body
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: true}));
+
 
 app.get('/', (req, res) => {
 
@@ -61,7 +67,7 @@ app.get('/products', (req, res) => {
 
   if(req.query.productType) {
     query.productType = req.query.productType; //adding the object to the query object
-  }
+  } 
 
   Product.find(query, (err, products) => {
     if(err) res.sendStatus(500);
@@ -76,6 +82,16 @@ app.get('/products/:productId', (req, res) => {
 
     res.send(product);
   })
+});
+
+//Take res and create a mongoose product object 
+app.post('/products', (req, res) => {
+  let product = new Product(req.body);
+
+  product.save((err) => {
+    if(err) console.log(err); 
+    res.send(product);
+  });
 });
 
 app.listen(port, (err) => {
