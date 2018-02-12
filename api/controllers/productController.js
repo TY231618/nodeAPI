@@ -15,6 +15,15 @@ exports.getAllProducts = (req, res) => {
   });
 };
 
+exports.findOne = (req, res) => {
+
+  Product.findById({_id: req.params.productId}, (err, product) => {
+    if(err) return res.status(500).send(err);
+
+    res.send(product);
+  });
+};
+
 exports.postProduct = (req, res) => {
 
   let product = new Product(req.body);
@@ -23,5 +32,33 @@ exports.postProduct = (req, res) => {
     if(err) return console.log(err);
 
     res.send(product);
+  });
+};
+
+exports.deleteProduct = (req, res) => {
+  Product.findByIdAndRemove({_id: req.params.productId}, (err) => {
+    if(err) return console.log(err); 
+
+    res.status(204).send("Deleted");
+  });
+};
+
+exports.updateProduct = (req, res) => {
+
+  Product.findById({_id: req.params.productId}, (err, product) => {
+    if(err) return res.status(500).send(err);
+
+    product.name = req.body.name;
+    product.productType = req.body.productType;
+    product.price = req.body.price;
+    product.dateAdded = req.body.dateAdded;
+    product.inStock = req.body.inStock;
+
+    product.save((err) => {
+      if(err) return res.status(500).send(err);
+
+      res.send(product);
+
+    });
   });
 };
