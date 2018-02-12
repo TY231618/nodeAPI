@@ -15,6 +15,7 @@ let db = mongoose.connect('mongodb://localhost:27017/node-api', (err) => {
 
 //MiddleWare; allowing Express to read the body
 app.use(bodyParser.json());
+//TODO: readup 
 app.use(bodyParser.urlencoded({extended: true}));
 
 
@@ -93,6 +94,15 @@ app.post('/products', (req, res) => {
     res.send(product);
   });
 });
+
+//Take product Id and delete it from the db
+app.delete('/products/:productId', (req, res) => {
+  Product.findByIdAndRemove({_id: req.params.productId}, (err) => {
+    if(err)console.log(err); 
+
+    res.status(204).send("Deleted");
+  });
+}); 
 
 app.listen(port, (err) => {
   if(err) console.log(err);
