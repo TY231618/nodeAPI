@@ -37,16 +37,6 @@ productRoutes(app);
 //   })
 // });
 
-// //Take res and create a mongoose product object 
-// app.post('/products', (req, res) => {
-//   let product = new Product(req.body);
-
-//   product.save((err) => {
-//     if(err) return console.log(err);
-//     res.send(product);
-//   });
-// });
-
 // //Take product Id and delete it from the db
 // app.delete('/products/:productId', (req, res) => {
 //   Product.findByIdAndRemove({_id: req.params.productId}, (err) => {

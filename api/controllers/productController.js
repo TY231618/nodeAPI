@@ -14,3 +14,14 @@ exports.getAllProducts = (req, res) => {
     res.send(products);
   });
 };
+
+exports.postProduct = (req, res) => {
+
+  let product = new Product(req.body);
+
+  product.save((err) => {
+    if(err) return console.log(err);
+
+    res.send(product);
+  });
+};
