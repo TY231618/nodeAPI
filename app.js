@@ -57,7 +57,13 @@ app.get('/', (req, res) => {
 
 app.get('/products', (req, res) => {
 
-  Product.find((err, products) => {
+  let query = {};
+
+  if(req.query.productType) {
+    query.productType = req.query.productType; //adding the object to the query object
+  }
+
+  Product.find(query, (err, products) => {
     if(err) res.sendStatus(500);
     res.send(products);
   });
