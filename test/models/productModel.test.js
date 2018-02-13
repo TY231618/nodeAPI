@@ -1,11 +1,16 @@
 const productModel = require('../../api/models/productModel');
 
 let product = new productModel({
-  name: "Adidas T-shirt"
+  name: 'Nike',
+  productType: 'jumper',
+  price:10,
+  inStock: true,
+  dateAdded: Date.now()
 });
 
 describe('Product Model', () => {
   test('has multiple properties', () => {
+    console.log(product);
     expect(product).toHaveProperty('name');
     expect(product).toHaveProperty('productType');
     expect(product).toHaveProperty('price');
@@ -15,9 +20,9 @@ describe('Product Model', () => {
 
   test('dateAdded property is of type Date', () => {
     expect(product.dateAdded).toBeInstanceOf(Date);
-  })
+  });
 
   test('name property is required', () => {
     expect(product.name).toBeDefined();
-  })
-})
+  });
+});

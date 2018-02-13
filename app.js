@@ -25,7 +25,7 @@ app.get('/', (req, res) => {
   res.send('hello');
 });
 
-productRoutes(app);
+app.use('/products', productRoutes);
 
 app.listen(port, (err) => {
   if(err) return console.log(err);
