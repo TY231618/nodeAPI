@@ -1,4 +1,4 @@
-const productModel = require('./productModel');
+const productModel = require('../../api/models/productModel');
 
 let product = new productModel({
   name: "Adidas T-shirt"
