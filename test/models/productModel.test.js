@@ -10,7 +10,6 @@ let product = new productModel({
 
 describe('Product Model', () => {
   test('has multiple properties', () => {
-    console.log(product);
     expect(product).toHaveProperty('name');
     expect(product).toHaveProperty('productType');
     expect(product).toHaveProperty('price');
