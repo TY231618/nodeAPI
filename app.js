@@ -17,7 +17,7 @@ let db = mongoose.connect('mongodb://localhost:27017/node-api', (err) => {
 
 //MiddleWare; allowing Express to read the body
 app.use(bodyParser.json());
-//TODO: readup 
+//TODO: readup
 app.use(bodyParser.urlencoded({extended: true}));
 
 app.get('/', (req, res) => {
@@ -32,3 +32,5 @@ app.listen(port, (err) => {
 
   console.log('Running api on port: ', port);
 });
+
+module.exports = app;

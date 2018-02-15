@@ -9,7 +9,7 @@ let product = new productModel({
 });
 
 describe('Product Model', () => {
-  test('has multiple properties', () => {
+  test('should have multiple properties', () => {
     expect(product).toHaveProperty('name');
     expect(product).toHaveProperty('productType');
     expect(product).toHaveProperty('price');
@@ -17,11 +17,11 @@ describe('Product Model', () => {
     expect(product).toHaveProperty('dateAdded');
   });
 
-  test('dateAdded property is of type Date', () => {
+  test('dateAdded property should be type of type Date', () => {
     expect(product.dateAdded).toBeInstanceOf(Date);
   });
 
-  test('name property is required', () => {
+  test('name property should be required', () => {
     expect(product.name).toBeDefined();
   });
 });
